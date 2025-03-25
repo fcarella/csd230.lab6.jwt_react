@@ -42,7 +42,7 @@ public class SecurityConfig  {
                 .cors(Customizer.withDefaults())
                 .authorizeRequests()
                 .requestMatchers("/rest/auth/**").permitAll()
-                .requestMatchers("/rest/**").permitAll()
+                .requestMatchers("/rest/**").permitAll() // is this right?? seems to work can only access if logged in but ???
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
