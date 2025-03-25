@@ -13,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -30,19 +31,32 @@ public class Application {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
+
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Apply to all endpoints
-                        .allowedOrigins("http://localhost:5173") //  Specific origin
-//                        .allowedOrigins("**") //  Specific origin
-                        .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS") // Allowed HTTP methods
-                        .allowedHeaders("*") // Allowed headers
-                        .allowCredentials(true) // Important for cookies and authentication
-                        .maxAge(3600); // Cache duration for preflight requests (in seconds)
+                registry
+                        .addMapping("/**")
+                        .allowedMethods(CorsConfiguration.ALL)
+                        .allowedHeaders(CorsConfiguration.ALL)
+                        .allowedOriginPatterns(CorsConfiguration.ALL);
             }
         };
     }
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**") // Apply to all endpoints
+//                        .allowedOrigins("http://localhost:5173") //  Specific origin
+//                        .allowedOrigins("http://localhost:8080") //  Specific origin
+//                        .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS") // Allowed HTTP methods
+//                        .allowedHeaders("*") // Allowed headers
+//                        .allowCredentials(true) // Important for cookies and authentication
+//                        .maxAge(3600); // Cache duration for preflight requests (in seconds)
+//            }
+//        };
+//    }
 
 //    @Bean
 //    public WebMvcConfigurer corsConfigurer() {

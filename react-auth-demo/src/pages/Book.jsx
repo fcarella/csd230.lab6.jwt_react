@@ -12,7 +12,7 @@ function Book() {
             try {
                 console.log("in fetchbooks");
                 const response = await axios.get('http://localhost:8080/rest/book', {
-                    withCredentials: true // Include cookies and auth headers
+                    withCredentials: false // Include cookies and auth headers
                 });
                 setBooks(response.data);
                 setLoading(false);
