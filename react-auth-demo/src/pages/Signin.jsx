@@ -49,6 +49,11 @@ function Signin() {
         <div className="login-container">
             <h2>Login</h2>
             {error && <div className="error-message">{error}</div>}
+
+            <div>
+                <p>username: your email</p>
+                <p>password: 123456</p>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
